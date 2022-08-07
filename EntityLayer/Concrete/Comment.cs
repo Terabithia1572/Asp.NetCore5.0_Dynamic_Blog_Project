@@ -16,5 +16,10 @@ namespace EntityLayer.Concrete
         public string CommentContent { get; set; }
         public DateTime CommentDate { get; set; }
         public bool CommentStatus { get; set; }
+
+        public int BlogID { get; set; }
+        //Blog ile ilişkili olduğu için Blog tarafındaki
+        //ID'yi burda tuttuk
+        public Blog Blogs { get; set; }
     }
 }

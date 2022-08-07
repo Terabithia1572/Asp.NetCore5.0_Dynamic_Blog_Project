@@ -18,6 +18,14 @@ namespace EntityLayer.Concrete
         public DateTime BlogCreateDate { get; set; }
         public bool BlogStatus { get; set; }
 
+        public int CategoryID { get; set; } //ilişkili tabloda
+        //ilişkili tabloda tutulacak ID
+        public Category Category { get; set; }
+
+        public List<Comment> Comments { get; set; }
+        // bir bloğa birden fazla yorum yapılabilir
+        //o yüzden blog içerisine comment'si ilişkilendirdik
+
 
     }
 }
