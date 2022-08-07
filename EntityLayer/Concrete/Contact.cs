@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EntityLayer
+namespace EntityLayer.Concrete
 {
-   public class Contact
+    public class Contact
     {
         [Key]
         public int ContactID { get; set; }
@@ -17,6 +17,5 @@ namespace EntityLayer
         public string ContactMessage { get; set; }
         public DateTime ContactDate { get; set; }
         public bool ContactStatus { get; set; }
-
     }
 }
