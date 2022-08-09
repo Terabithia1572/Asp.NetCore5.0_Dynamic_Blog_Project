@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
 {
-    public class Category : Controller
+    public class CategoryController : Controller
     {
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
         public IActionResult Index()
