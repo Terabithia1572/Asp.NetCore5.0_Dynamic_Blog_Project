@@ -20,27 +20,27 @@ namespace BusinessLayer.Concrete
 
         public void CategoryAdd(Category category)
         {
-            throw new NotImplementedException();
+            efCategoryRepository.Insert(category);
         }
 
         public void CategoryDelete(Category category)
         {
-            throw new NotImplementedException();
+            efCategoryRepository.Delete(category);
         }
 
         public void CategoryUpdate(Category category)
         {
-            throw new NotImplementedException();
+            efCategoryRepository.Update(category);
         }
 
         public Category GetByID(int id)
         {
-            throw new NotImplementedException();
+            return efCategoryRepository.GetByID(id);
         }
 
         public List<Category> GetList()
         {
-            throw new NotImplementedException();
+            return efCategoryRepository.GetListAll();
         }
     }
 }
