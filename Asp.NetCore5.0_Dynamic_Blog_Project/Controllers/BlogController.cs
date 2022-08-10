@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +10,11 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
 {
     public class BlogController : Controller
     {
+        BlogManager blogManager = new BlogManager(new EfBlogRepository());
         public IActionResult Index()
         {
-            return View();
+            var values = blogManager.GetList();
+            return View(values);
         }
     }
 }
