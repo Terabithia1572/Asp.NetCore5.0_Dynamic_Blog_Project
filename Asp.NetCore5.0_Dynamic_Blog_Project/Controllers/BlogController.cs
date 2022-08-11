@@ -16,9 +16,10 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
             var values = blogManager.GetBlogListWithCategory();
             return View(values);
         }
-        public IActionResult BlogDetails(int id)
+        public IActionResult BlogReadAll(int id)
         {
-            return View();
+            var values = blogManager.GetBlogByID(id);
+            return View(values);
         }
     }
 }
