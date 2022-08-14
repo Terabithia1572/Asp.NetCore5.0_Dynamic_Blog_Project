@@ -10,10 +10,10 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.ViewComponents.Comment
 {
     public class CommentListByBlog:ViewComponent
     {
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(int id)
         {
             CommentManager commentManager = new CommentManager(new EfCommentRepository());
-            var values = commentManager.GetList(2);
+            var values = commentManager.GetList(id);
             return View(values);
         }
     }

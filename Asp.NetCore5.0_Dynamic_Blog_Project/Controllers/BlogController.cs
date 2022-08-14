@@ -18,6 +18,7 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
         }
         public IActionResult BlogReadAll(int id)
         {
+            ViewBag.i = id;
             var values = blogManager.GetBlogByID(id);
             return View(values);
         }
