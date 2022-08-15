@@ -8,6 +8,12 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
 {
     public class RegisterController : Controller
     {
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return View();
+        }
+        [HttpPost]
         public IActionResult Index()
         {
             return View();
