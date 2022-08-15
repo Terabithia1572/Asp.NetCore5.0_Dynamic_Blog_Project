@@ -174,6 +174,9 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("ConfirmPassword")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("WriterAbout")
                         .HasColumnType("nvarchar(max)");
 
