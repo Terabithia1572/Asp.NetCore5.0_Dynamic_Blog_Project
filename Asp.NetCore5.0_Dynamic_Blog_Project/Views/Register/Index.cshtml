@@ -1,4 +1,4 @@
-﻿
+﻿@model EntityLayer.Concrete.Writer
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/UserLayout.cshtml";
@@ -13,18 +13,20 @@
         <h3 class="tittle">Kayıt Ol</h3>
         <div class="inner-sec">
             <div class="login p-5 bg-light mx-auto mw-100">
-                <form action="#" method="post">
-                    <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                            <label for="validationCustom01">Adınız</label>
+                @using(Html.BeginForm("Index","Register",FormMethod.Post))
+                {
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="validationCustom01">Adınız</label>
 
-                            <input type="text" class="form-control" id="validationDefault01" name="WriterName" placeholder="" required="">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="validationCustom02">Mail Adresiniz</label>
-                            <input type="email" class="form-control" id="validationDefault02" name="WriterMail" placeholder="" required="">
-                        </div>
+                        @* <input type="text" class="form-control" id="validationDefault01" name="WriterName" placeholder="" required="">*@
+                        @Html.TextBoxFor(x=>x.WriterName)
                     </div>
+                    <div class="col-md-6 >mb-3">
+                        <label for="validationCustom02">Mail Adresiniz</label>
+                        <input type="email" class="form-control" id="validationDefault02" name="WriterMail" placeholder="" required="">
+                    </div>
+                </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="exampleInputPassword1 mb-2">Şifre</label>
@@ -44,7 +46,8 @@
                     <p>
                         <a href="#" id="btn1">Kaydol'a tıklayarak, şartlarınızı kabul ediyorum </a>
                     </p>
-                </form>
+                }
+                
 
             </div>
         </div>
