@@ -22,6 +22,11 @@ namespace EntityLayer.Concrete
         //ilişkili tabloda tutulacak ID
         public Category Category { get; set; }
 
+        public int WriterID { get; set; } //ilişkili tabloda
+        //ilişkili tabloda tutulacak ID
+        public Writer Writer { get; set; }
+
+
         public List<Comment> Comments { get; set; }
         // bir bloğa birden fazla yorum yapılabilir
         //o yüzden blog içerisine comment'si ilişkilendirdik

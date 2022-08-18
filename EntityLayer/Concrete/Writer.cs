@@ -19,5 +19,6 @@ namespace EntityLayer.Concrete
         public bool WriterStatus { get; set; }
         //[Compare("WriterPassword", ErrorMessage = "Şifreler eşleşmiyor. Lütfen tekrar deneyin!")]
         //public string ConfirmPassword { get; set; }
+        public List<Blog> Blogs { get; set; }
     }
 }
