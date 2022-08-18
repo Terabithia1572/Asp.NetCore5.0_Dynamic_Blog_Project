@@ -20,7 +20,8 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
         [HttpPost]
         public PartialViewResult SubscribeMail(NewsLetter p)
         {
-             
+            p.MailStatus = true;
+            newsLetterManager.AddNewsLetter(p); 
             return PartialView();
         }
     }
