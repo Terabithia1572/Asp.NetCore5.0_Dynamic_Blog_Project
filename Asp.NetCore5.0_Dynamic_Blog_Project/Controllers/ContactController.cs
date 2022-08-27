@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +11,20 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
 {
     public class ContactController : Controller
     {
+        ContactManager contacManager = new ContactManager(new EfContactRepository());
+
         [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult Index()
+        public IActionResult Index(Contact contact)
         {
-            return View();
+            contact.ContactDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            contact.ContactStatus = true;
+            contacManager.ContactAdd(contact);
+            return RedirectToAction("Index","Blog");
         }
     }
 }
