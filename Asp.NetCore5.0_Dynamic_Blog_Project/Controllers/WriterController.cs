@@ -9,7 +9,7 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
 {
     public class WriterController : Controller
     {
-        [AllowAnonymous]
+       
         public IActionResult Index()
         {
             return View();
