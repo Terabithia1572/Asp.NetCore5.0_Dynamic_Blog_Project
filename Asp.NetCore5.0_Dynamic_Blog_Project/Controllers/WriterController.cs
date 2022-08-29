@@ -23,5 +23,10 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
         {
             return View();
         }
+        [AllowAnonymous]
+        public PartialViewResult WriterNavbarPartial()
+        {
+            return PartialView();
+        }
     }
 }
