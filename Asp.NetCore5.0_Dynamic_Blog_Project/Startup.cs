@@ -29,7 +29,7 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project
 
             services.AddControllersWithViews();
 
-            services.AddSession();
+           
 
             services.AddMvc(config =>
             {
@@ -70,7 +70,7 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project
 
             app.UseAuthentication();
 
-            app.UseSession();
+           // app.UseSession();
 
             app.UseRouting();
 
