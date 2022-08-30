@@ -21,7 +21,7 @@
     @Html.TextBoxFor(x => x.BlogThumbNailImage, new { @class = "form-control" })
     <br />
     @Html.Label("Kategori")
-    @*@Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.cm, new { @class = "form-control" })*@
+    @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.cv, new { @class = "form-control" })
     <br />
     @Html.Label("Blog İçeriği")
     @Html.TextAreaFor(x => x.BlogContent, 15, 3, new { @class = "form-control" })
