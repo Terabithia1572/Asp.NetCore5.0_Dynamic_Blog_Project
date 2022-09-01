@@ -23,7 +23,7 @@ namespace BusinessLayer.Concrete
             return _blogDal.GetListWithCategory();
         }
 
-        public List<Blog> Test(int id)
+        public List<Blog> GetListWithCategoryByWriterBm(int id)
         {
             return _blogDal.GetListWithCategoryByWriter(id);
         }

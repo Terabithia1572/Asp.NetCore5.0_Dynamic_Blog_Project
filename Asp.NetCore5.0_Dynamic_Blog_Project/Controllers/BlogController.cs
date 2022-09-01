@@ -32,7 +32,7 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
 
         public IActionResult BlogListByWriter()
         {
-            var values=blogManager.Test(4);
+            var values=blogManager.GetListWithCategoryByWriterBm (4);
             return View(values);
         }
         [HttpGet]
