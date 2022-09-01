@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
@@ -18,6 +19,8 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
     {
         BlogManager blogManager = new BlogManager(new EfBlogRepository());
         CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
+        Context c = new Context();
+
         public IActionResult Index()
         {
             var values = blogManager.GetBlogListWithCategory();
@@ -76,6 +79,35 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
             blogManager.TDelete(blogvalue);
             return RedirectToAction("BlogListByWriter");
         }
+
+        [HttpGet]
+        public IActionResult EditBlog(int id)
+        {
+            List<SelectListItem> categoryValues = (from x in categoryManager.GetList()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryID.ToString()
+                                                   }).ToList();
+            ViewBag.cm = categoryValues;
+            var blogvalues = blogManager.TGetByID(id);
+
+            return View(blogvalues);
+        }
+        [HttpPost]
+
+        public IActionResult EditBlog(Blog p)
+        {
+            var userMail = User.Identity.Name;
+            //var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(
+                //y => y.WriterID).FirstOrDefault();
+            //p.WriterID = writerID;
+            p.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            p.BlogStatus = true;
+            blogManager.TUpdate(p);
+            return RedirectToAction("BlogListByWriter");
+        }
+
 
     }
 }
