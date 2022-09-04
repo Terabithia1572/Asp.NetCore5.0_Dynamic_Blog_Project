@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Concrete;
+﻿using Asp.NetCore5._0_Dynamic_Blog_Project.Models;
+using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
@@ -82,24 +83,24 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
         }
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult WriterAdd(Writer p)
+        public IActionResult WriterAdd(AddProfileImage p)
         {
-            //Writer w = new Writer();
-            //if (p.WriterImage != null)
-            //{
-            //    var extension = Path.GetExtension(p.WriterImage.FileName);
-            //    var newimagename = Guid.NewGuid() + extension;
-            //    var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/WriterImageFiles/", newimagename);
-            //    var stream = new FileStream(location, FileMode.Create);
-            //    p.WriterImage.CopyTo(stream);
-            //    w.WriterImage = newimagename;
-            //}
-            //w.WriterMail = p.WriterMail;
-            //w.WriterName = p.WriterName;
-            //w.WriterPassword = p.WriterPassword;
-            //w.WriterStatus = true;
-            //w.WriterAbout = p.WriterAbout;
-            writerManager.TAdd(p);
+            Writer w = new Writer();
+            if (p.WriterImage != null)
+            {
+                var extension = Path.GetExtension(p.WriterImage.FileName);
+                var newimagename = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/WriterImageFiles/", newimagename);
+                var stream = new FileStream(location, FileMode.Create);
+                p.WriterImage.CopyTo(stream);
+                w.WriterImage = newimagename;
+            }
+            w.WriterMail = p.WriterMail;
+            w.WriterName = p.WriterName;
+            w.WriterPassword = p.WriterPassword;
+            w.WriterStatus = true;
+            w.WriterAbout = p.WriterAbout;
+            writerManager.TAdd(w);
             return RedirectToAction("Index", "Dashboard");
         }
 
