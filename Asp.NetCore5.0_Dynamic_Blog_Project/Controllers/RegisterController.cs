@@ -29,7 +29,7 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
             {
                 p.WriterStatus = true;
                 p.WriterAbout = "Deneme Test";
-                writerManager.WriterAdd(p);
+                writerManager.TAdd(p);
                 return RedirectToAction("Index", "Blog");
             }
             else

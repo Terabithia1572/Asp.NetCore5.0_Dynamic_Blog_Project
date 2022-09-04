@@ -16,10 +16,10 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.ViewComponents.Writer
         {
             var userMail = User.Identity.Name;
             Context c = new Context();
-            //var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(
-            //    y => y.WriterID).FirstOrDefault();
-            //var values = writerManager.GetWriterByID(writerID);
-            return View();
+            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(
+                y => y.WriterID).FirstOrDefault();
+            var values = writerManager.GetWriterByID(writerID);
+            return View(values);
         }
 
     }
