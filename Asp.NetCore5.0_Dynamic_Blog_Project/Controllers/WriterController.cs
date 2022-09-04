@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -72,6 +73,34 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
                 }
             }
             return View();
+        }
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult WriterAdd()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult WriterAdd(Writer p)
+        {
+            //Writer w = new Writer();
+            //if (p.WriterImage != null)
+            //{
+            //    var extension = Path.GetExtension(p.WriterImage.FileName);
+            //    var newimagename = Guid.NewGuid() + extension;
+            //    var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/WriterImageFiles/", newimagename);
+            //    var stream = new FileStream(location, FileMode.Create);
+            //    p.WriterImage.CopyTo(stream);
+            //    w.WriterImage = newimagename;
+            //}
+            //w.WriterMail = p.WriterMail;
+            //w.WriterName = p.WriterName;
+            //w.WriterPassword = p.WriterPassword;
+            //w.WriterStatus = true;
+            //w.WriterAbout = p.WriterAbout;
+            writerManager.TAdd(p);
+            return RedirectToAction("Index", "Dashboard");
         }
 
     }
