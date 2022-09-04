@@ -1,5 +1,9 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -36,12 +40,39 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
         {
             return PartialView();
         }
-        [AllowAnonymous]
-
+        [HttpGet]
         public IActionResult WriterEditProfile()
         {
-            var writerValues = writerManager.TGetByID(1);
-            return View(writerValues);
+            Context c = new Context();
+            var userMail = User.Identity.Name;
+
+            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(
+                y => y.WriterID).FirstOrDefault();
+            var writervalues = writerManager.TGetByID(writerID);
+            return View(writervalues);
         }
+
+
+        [HttpPost]
+        public IActionResult WriterEditProfile(Writer p)
+        {
+
+            WriterValidator wl = new WriterValidator();
+            ValidationResult results = wl.Validate(p);
+            if (results.IsValid)
+            {
+                writerManager.TUpdate(p);
+                return RedirectToAction("Index", "Dashboard");
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
+        }
+
     }
 }
