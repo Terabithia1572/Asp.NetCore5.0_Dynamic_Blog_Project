@@ -20,5 +20,7 @@ namespace EntityLayer.Concrete
         //[Compare("WriterPassword", ErrorMessage = "Şifreler eşleşmiyor. Lütfen tekrar deneyin!")]
         //public string ConfirmPassword { get; set; }
         public List<Blog> Blogs { get; set; }
+        public virtual ICollection<Message2> WriterSender { get; set; }
+        public virtual ICollection<Message2> WriterReceiver { get; set; }
     }
 }
