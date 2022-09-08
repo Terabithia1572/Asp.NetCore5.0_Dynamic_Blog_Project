@@ -1,0 +1,41 @@
+﻿@using EntityLayer.Concrete
+@model List<Notification>
+@{
+    ViewData["Title"] = "AllNotification";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<br />
+<h1>Bildirimler</h1>
+<table class="table table-border">
+
+    <tr>
+        <th>#</th>
+        <th>Bildirimler</th>
+        <th>Tarih</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.NotificationID</td>
+            <td>@item.NotificationDetails</td>
+            <td>
+                @{
+                    @*var sayi = Convert.ToDateTime((DateTime.Now- item.NotificationDate).ToString()).ToShortDateString();
+                        @sayi.ToString().Substring(0,2)*@
+                    @*var sayi1 = DateTime.Now.Day.ToString();
+                        var sayi2 = item.NotificationDate.Day.ToString();
+                        var sonuc = DateTime.Parse(sayi1) - DateTime.Parse(sayi2);
+                        @sonuc.ToString()*@
+                    @*int sonuc = string.Compare(sayi1, sayi2);
+                        @sonuc.ToString()*@
+
+                    var minute = DateTime.Now.Subtract(item.NotificationDate).TotalMinutes;
+                    string sonuc = " Dakika Önce Gönderildi..";
+                    @minute.ToString().Substring(0, 4) @sonuc
+
+                }
+            </td>
+        </tr>
+    }
+</table>
