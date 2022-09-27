@@ -25,7 +25,7 @@
     <td>@(((DateTime)item.BlogCreateDate).ToString("dd.MM.yyyy"))</td>
     <td>@item.Category.CategoryName</td>
     <td>
-        @if (item.BlogStatus)
+        @if (item.BlogStatus==true)
         {
             <span class="badge badge-success">Aktif</span>
         }
