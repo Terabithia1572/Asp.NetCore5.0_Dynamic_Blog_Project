@@ -17,7 +17,7 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
         CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
         Context c = new Context();
 
-        [AllowAnonymous]
+        
         public IActionResult Index()
         {
             ViewBag.ToplamBlogSayisi = blogManager.GetList().Count();
