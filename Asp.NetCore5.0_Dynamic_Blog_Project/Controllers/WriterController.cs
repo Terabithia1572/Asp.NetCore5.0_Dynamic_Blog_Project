@@ -19,8 +19,15 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
     {
 
         WriterManager writerManager = new WriterManager(new EfWriterRepository());
+        [Authorize]
         public IActionResult Index()
         {
+            var usermail = User.Identity.Name;
+            ViewBag.userName = usermail;
+            Context context = new Context();
+            var writerName = context.Writers.Where(x => x.WriterMail == usermail)
+                .Select(y => y.WriterName).FirstOrDefault();
+            ViewBag.writerName = writerName;
             return View();
         }
         public IActionResult WriterProfile()
