@@ -9,9 +9,10 @@ using System.Threading.Tasks;
 
 namespace Asp.NetCore5._0_Dynamic_Blog_Project.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class BlogController : Controller
     {
-        public IActionResult ExportStaticBlogList()
+        public IActionResult ExportStaticExcelBlogList()
         {
             using (var workbook=new XLWorkbook())
             {
@@ -44,6 +45,11 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Areas.Admin.Controllers
                 new BlogModel {ID=3,blogName="Galatasaray'ın UEFA Macerası"}
             };
             return blogModels;
+        }
+
+        public IActionResult BlogListExcel()
+        {
+            return View();
         }
     }
 }
