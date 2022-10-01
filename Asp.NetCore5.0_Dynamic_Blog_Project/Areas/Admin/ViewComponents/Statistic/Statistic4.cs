@@ -12,6 +12,12 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Areas.Admin.ViewComponents.Statis
         Context context = new Context();
         public IViewComponentResult Invoke()
         {
+            ViewBag.adminAdi = context.Admins.Where(x => x.AdminID == 1).Select(y => y.Name)
+                .FirstOrDefault();
+            ViewBag.Image = context.Admins.Where(x => x.AdminID == 1).Select(y => y.ImageURL)
+                .FirstOrDefault();
+            ViewBag.adminAciklama = context.Admins.Where(x => x.AdminID == 1).Select(y => y.ShortDescription)
+                .FirstOrDefault();
             return View();
         }
     }
