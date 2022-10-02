@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Asp.NetCore5._0_Dynamic_Blog_Project.Areas.Admin.Models
 {
-    public class CategoryClass
+    public class WriterClass
     {
-        public int categorycount { get; set; }
-        public string categoryname { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
     }
 }

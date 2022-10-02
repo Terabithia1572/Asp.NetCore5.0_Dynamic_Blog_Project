@@ -17,23 +17,28 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Areas.Admin.Controllers
 
         public IActionResult CategoryChart()
         {
-            List<CategoryClass> List = new List<CategoryClass>();
-            List.Add(new CategoryClass
+            List<CategoryClass> list = new List<CategoryClass>();
+            list.Add(new CategoryClass
             {
-                CategoryName = "Teknoloji",
-                CategoryCount = 10
+                categoryname = "Teknoloji",
+                categorycount = 10
             });
-            List.Add(new CategoryClass
+            list.Add(new CategoryClass
             {
-                CategoryName = "Yazılım",
-                CategoryCount = 14
+                categoryname = "Yazılım",
+                categorycount = 14
             });
-            List.Add(new CategoryClass
+            list.Add(new CategoryClass
             {
-                CategoryName = "Spor",
-                CategoryCount = 5
+                categoryname = "Spor",
+                categorycount = 5
             });
-            return Json(new { jasonList = List });
+            list.Add(new CategoryClass
+            {
+                categoryname = "Sinema",
+                categorycount = 2
+            });
+            return Json(new { jsonList = list });
         }
     }
 }

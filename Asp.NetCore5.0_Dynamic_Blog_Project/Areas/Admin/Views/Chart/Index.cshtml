@@ -29,16 +29,16 @@
                     var Data = chartsdata.jsonList;
                     var data = new google.visualization.DataTable();
 
-                    data.addColumn('string', 'CategoryName');
-                    data.addColumn('number', 'CategoryCount');
+                    data.addColumn('string', 'categoryname');
+                    data.addColumn('number', 'categoryname');
 
-                    for (var i = 0; i < Data.lenght; i++) {
+                    for (var i = 0; i < Data.length; i++) {
                         data.addRow([Data[i].CategoryName, Data[i].CategoryCount]);
                     }
 
                     var chart = new google.visualization.PieChart(document.getElementById('chartdiv'));
 
-                    chart.Draw(data, {
+                    chart.draw(data, {
                         title: "Google Chart Core Projesi",
                         position: "top",
                         fontsize: "16px"
