@@ -22,7 +22,14 @@
             type: "Get",
             url: "/Admin/Writer/WriterList",
             success: function (func) {
-                console.log(func);
+                let writer = jQuery.parseJSON(func);
+                console.log(writer);
+                let tableHtml = "<table class=table table-bordered> <tr><th>Yazar ID </th> <th>Yazar Adı </th> </tr>";
+                $.each(writer, (index, value)=> {
+                    tableHtml += `<tr><td>${value.ID}</td><td>${value.Name}</td></tr>`
+                });
+                tableHtml += "</table>";
+                $("#writerlist").html(tableHtml);
             }
         });
     });
