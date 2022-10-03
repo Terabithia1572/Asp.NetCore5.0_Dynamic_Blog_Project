@@ -5,13 +5,15 @@ VisualStudioVersion = 16.0.32630.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Asp.NetCore5.0_Dynamic_Blog_Project", "Asp.NetCore5.0_Dynamic_Blog_Project\Asp.NetCore5.0_Dynamic_Blog_Project.csproj", "{97D884D9-561B-4D52-B4C2-171F3DCCA74B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityLayer", "EntityLayer\EntityLayer.csproj", "{37A997E6-665B-426B-B859-2133F6BB3600}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityLayer", "EntityLayer\EntityLayer.csproj", "{37A997E6-665B-426B-B859-2133F6BB3600}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{C7CB2BA0-12B7-43A9-8278-735CC75B9BAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{C7CB2BA0-12B7-43A9-8278-735CC75B9BAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{98899F02-FA0B-4BFD-B71A-3B8182CDE6D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{98899F02-FA0B-4BFD-B71A-3B8182CDE6D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreLayer", "CoreLayer\CoreLayer.csproj", "{AFAA4221-B23D-4F13-B6C9-42C7DAE0F074}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreLayer", "CoreLayer\CoreLayer.csproj", "{AFAA4221-B23D-4F13-B6C9-42C7DAE0F074}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogApiDemo", "BlogApiDemo\BlogApiDemo.csproj", "{7E6007F8-9767-49CC-90D8-813ACD0BDF87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{AFAA4221-B23D-4F13-B6C9-42C7DAE0F074}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFAA4221-B23D-4F13-B6C9-42C7DAE0F074}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFAA4221-B23D-4F13-B6C9-42C7DAE0F074}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E6007F8-9767-49CC-90D8-813ACD0BDF87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E6007F8-9767-49CC-90D8-813ACD0BDF87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E6007F8-9767-49CC-90D8-813ACD0BDF87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E6007F8-9767-49CC-90D8-813ACD0BDF87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
