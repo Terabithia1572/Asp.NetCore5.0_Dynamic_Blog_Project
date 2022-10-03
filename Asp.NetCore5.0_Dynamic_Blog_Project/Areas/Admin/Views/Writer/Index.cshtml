@@ -9,6 +9,7 @@
 <button type="button" id="btngetList" class="btn btn-outline-primary">Yazar Listesi</button>
 <button type="button" id="btnGetByID" class="btn btn-outline-success">Yazar Getir</button>
 <button type="button" id="btnaddWriter" class="btn btn-outline-info">Yazar Ekle</button>
+<button type="button" id="btndeleteWriter" class="btn btn-outline-danger">Yazar Sil</button>
 <br />
 <br />
 <div id="writerlist">
@@ -33,6 +34,10 @@
     
 
 
+</div>
+
+<div>
+    <input type="text" class="form-control" id="txtID" placeholder="Silinecek Yazar ID" />
 </div>
 
 @section scripts {
@@ -89,7 +94,20 @@
                     alert("Yazar Ekleme işlemi başarılı bir ekilde eklendi");
                 }
             })
-        })
+        });
+
+        $("#btndeleteWriter").click(x => {
+            let id = $("#txtID").val();
+            $.ajax({
+                url: "/Admin/Writer/DeleteWriter/" + id,
+                type: "post",
+                dataType: "json",
+                success: function (func) {
+                    
+                    alert("Yazar Silme İşlemi Başarıyla Gerçekleşti.. ");
+                }
+            });
+        });
 
     </script>
 }

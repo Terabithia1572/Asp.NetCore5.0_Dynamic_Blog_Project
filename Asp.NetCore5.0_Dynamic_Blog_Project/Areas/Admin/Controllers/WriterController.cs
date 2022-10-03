@@ -36,6 +36,13 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Areas.Admin.Controllers
             return Json(jsonWriters);
         }
 
+        public IActionResult DeleteWriter(int id)
+        {
+            var writer = writers.FirstOrDefault(x => x.ID == id);
+            writers.Remove(writer);
+            return Json(writer);
+        }
+
         public static List<WriterClass> writers = new List<WriterClass>
         {
             new WriterClass
