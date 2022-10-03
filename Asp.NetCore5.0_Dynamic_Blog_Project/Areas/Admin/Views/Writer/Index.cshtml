@@ -18,44 +18,47 @@
     Buraya 1 Yazar Gelecek
 </div>
 <br />
-<div >
-    <input type="text" id="writerID" placeholder="Yazar ID Değerini Girin" class="form-control"/>
+<div>
+    <input type="text" id="writerID" placeholder="Yazar ID Değerini Girin" class="form-control" />
 </div>
 
 @section scripts {
-<script>
-    $("#btngetList").click(function () {
-        $.ajax({
-            contentType: "application/json",
-            dataType: "json",
-            type: "Get",
-            url: "/Admin/Writer/WriterList",
-            success: function (func) {
-                let writer = jQuery.parseJSON(func);
-                console.log(writer);
-                let tableHtml = "<table class=table table-bordered> <tr><th>Yazar ID </th> <th>Yazar Adı </th> </tr>";
-                $.each(writer, (index, value)=> {
-                    tableHtml += `<tr><td>${value.ID}</td><td>${value.Name}</td></tr>`
-                });
-                tableHtml += "</table>";
-                $("#writerlist").html(tableHtml);
-            }
+    <script>
+        $("#btngetList").click(function () {
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "Get",
+                url: "/Admin/Writer/WriterList",
+                success: function (func) {
+                    let writer = jQuery.parseJSON(func);
+                    console.log(writer);
+                    let tableHtml = "<table class=table table-bordered> <tr><th>Yazar ID </th> <th>Yazar Adı </th> </tr>";
+                    $.each(writer, (index, value) => {
+                        tableHtml += `<tr><td>${value.ID}</td><td>${value.Name}</td></tr>`
+                    });
+                    tableHtml += "</table>";
+                    $("#writerlist").html(tableHtml);
+                }
+            });
         });
-    });
 
-    $("#btnGetByID").click(x => {
-        let id = $("#writerID").val();
-        $.ajax({
-            contentType: "application/json",
-            dataType: "json",
-            url: "/Admin/Writer/GetWriterByID",
-            data: { writerID: id },
-            success: function (func) {
-                let writer = jQuery.parseJSON(func);
-                console.log(writer);
-            }
+        $("#btnGetByID").click(x => {
+            let id = $("#writerID").val();
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                url: "/Admin/Writer/GetWriterByID",
+                data: { writerID: id },
+                success: function (func) {
+                    let writer = jQuery.parseJSON(func);
+                    console.log(writer);
+
+                    let getValue = `<table class=table table-bordered> <tr><th>Yazar ID</th><th>Yazar Adı</th></tr><tr><td>${writer.ID}</td><td>${writer.Name}</td></tr></table>`;
+                    $("#writerGet").html(getValue);
+                }
+            });
+
         });
-        
-    });
-</script>
+    </script>
 }
