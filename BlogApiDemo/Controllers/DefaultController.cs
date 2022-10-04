@@ -21,5 +21,12 @@ namespace BlogApiDemo.Controllers
             var values = context.Employees.ToList();
             return Ok(values); // api başarılı istek olursa parantez içinde dönecek status kodu yazılıyor.
         }
+
+        [HttpPost]
+
+        public IActionResult EmployeeAdd()
+        {
+            return Ok();
+        }
     }
 }
