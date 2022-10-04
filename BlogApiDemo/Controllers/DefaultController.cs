@@ -24,8 +24,11 @@ namespace BlogApiDemo.Controllers
 
         [HttpPost]
 
-        public IActionResult EmployeeAdd()
+        public IActionResult EmployeeAdd(Employee employee)
         {
+            using var context= new Context();
+            context.Add(employee);
+            context.SaveChanges();
             return Ok();
         }
     }
