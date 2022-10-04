@@ -31,5 +31,22 @@ namespace BlogApiDemo.Controllers
             context.SaveChanges();
             return Ok();
         }
+
+        [HttpGet("{id}")]
+
+        public IActionResult EmployeeGet(int id)
+        {
+            using var context = new Context();
+            var employee = context.Employees.Find(id);
+            if(employee==null)
+            {
+                return NotFound();
+            }
+            else { 
+
+            return Ok(employee);
+
+            }
+        }
     }
 }
