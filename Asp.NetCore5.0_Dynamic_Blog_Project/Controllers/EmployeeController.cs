@@ -89,6 +89,20 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
             }
 
         }
+        public async Task<IActionResult> DeleteEmployee(int id)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var responseMessage = await httpClient.DeleteAsync("https://localhost:44396/api/Default/" + id);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+
+                }
+
+                return View();
+            }
+        }
 
     }
 
