@@ -52,6 +52,43 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
                 return View(employee);
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> EditEmployee(int id)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var responseMessage = await httpClient.GetAsync("https://localhost:44396/api/Default/" + id);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var jsonEmployee = await responseMessage.Content.ReadAsStringAsync();
+                    var value = JsonConvert.DeserializeObject<EmployeeVM>(jsonEmployee);
+                    return View(value);
+                }
+                return RedirectToAction("Index");
+
+            }
+
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditEmployee(EmployeeVM employeeVM)
+        {
+
+            using (var httpClient = new HttpClient())
+            {
+                var value = JsonConvert.SerializeObject(employeeVM);
+                var content = new StringContent(value, Encoding.UTF8, "application/json");
+
+                var responseMessage = await httpClient.PostAsync("https://localhost:44396/api/Default/EmployeeUpdate", content);
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+                return View(employeeVM);
+            }
+
+        }
 
     }
 
