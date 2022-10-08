@@ -16,7 +16,7 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Models
         [Required(ErrorMessage = "Şifre Giriniz")]
         public string Password { get; set; }
 
-        [Display(Name = "Şifre")]
+        [Display(Name = "Şifre Tekrar")]
         [Compare("Password", ErrorMessage = "Şifre eşleşmesi gerçekleşmedi")] //şifre eşleştirmesi
         public string ConfirmPassword { get; set; }
 
