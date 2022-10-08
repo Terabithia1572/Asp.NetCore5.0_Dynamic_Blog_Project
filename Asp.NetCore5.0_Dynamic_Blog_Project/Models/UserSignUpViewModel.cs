@@ -12,6 +12,10 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Models
         [Required(ErrorMessage = "Lütfen Ad Soyad Giriniz")]
         public string NameSurname { get; set; }
 
+        [Display(Name = "Kullanıcı Adı")]
+        [Required(ErrorMessage = "Kullanıcı Adı Giriniz")]
+        public string UserName { get; set; }
+
         [Display(Name = "Şifre")]
         [Required(ErrorMessage = "Şifre Giriniz")]
         public string Password { get; set; }
@@ -24,9 +28,7 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Models
         [Required(ErrorMessage = "Mail giriniz")] 
         public string Mail { get; set; }
 
-        [Display(Name = "Kullanıcı Adı")]
-        [Required(ErrorMessage = "Kullanıcı Adı Giriniz")]
-        public string UserName { get; set; }
+
 
     }
 }
