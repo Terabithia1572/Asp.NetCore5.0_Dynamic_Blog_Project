@@ -73,20 +73,15 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
         [HttpPost]
         public async Task<IActionResult> EditEmployee(EmployeeVM employeeVM)
         {
-
-            using (var httpClient = new HttpClient())
+            var httpClient = new HttpClient();
+            var jsonEmployee = JsonConvert.SerializeObject(employeeVM);
+            var content = new StringContent(jsonEmployee, Encoding.UTF8, "application/json");
+            var responseMessage = await httpClient.PutAsync("https://localhost:44396/api/Default/",content);
+            if(responseMessage.IsSuccessStatusCode)
             {
-                var value = JsonConvert.SerializeObject(employeeVM);
-                var content = new StringContent(value, Encoding.UTF8, "application/json");
-
-                var responseMessage = await httpClient.PostAsync("https://localhost:44396/api/Default/EmployeeUpdate", content);
-
-                if (responseMessage.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("Index");
-                }
-                return View(employeeVM);
+                return RedirectToAction("Index");
             }
+            return View(employeeVM);
 
         }
         public async Task<IActionResult> DeleteEmployee(int id)
