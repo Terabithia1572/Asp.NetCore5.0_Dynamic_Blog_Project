@@ -1,6 +1,8 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,14 +14,16 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.ViewComponents.Writer
     public class WriterAboutOnDashboard : ViewComponent
     {
         WriterManager writerManager = new WriterManager(new EfWriterRepository());
+        Context c = new Context();
         public IViewComponentResult Invoke()
         {
-            var userMail = User.Identity.Name;
-            Context c = new Context();
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(
-                y => y.WriterID).FirstOrDefault();
-            var values = writerManager.GetWriterByID(writerID);
-            return View(values);
+            var userName = User.Identity.Name;
+            ViewBag.veri = userName;
+            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            //sisteme otantike olan kullanıcının bilgilerinin gelmesi
+            var writerId = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
+            var value = writerManager.GetWriterByID(writerId);
+            return View(value);
         }
 
     }
