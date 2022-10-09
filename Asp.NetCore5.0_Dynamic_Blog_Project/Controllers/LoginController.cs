@@ -1,8 +1,10 @@
-﻿using DataAccessLayer.Concrete;
+﻿using Asp.NetCore5._0_Dynamic_Blog_Project.Models;
+using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,46 +14,35 @@ using System.Threading.Tasks;
 
 namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
-        [AllowAnonymous]
+        readonly SignInManager<AppUser> _signInManager;
+        public LoginController(SignInManager<AppUser> signInManager)
+        {
+
+            _signInManager = signInManager;
+        }
         public IActionResult Index()
         {
             return View();
         }
+
+
         [HttpPost]
-        [AllowAnonymous]
-        public async Task<IActionResult> Index(Writer p)
+        public async Task<IActionResult> Index(UserSignInViewModel P)
         {
-            Context context = new Context();
-            var datavalue = context.Writers.FirstOrDefault(x => x.WriterMail == p.WriterMail && x.WriterPassword == p.WriterPassword);
-            if(datavalue !=null)
+            var result = await _signInManager.PasswordSignInAsync(P.username, P.password, true, true); //perssitent true cerezlerde şifreyi hatırlasın //5 kez yanlıs giriş yaparsa hesap bloke olcak belli süre
+            if (result.Succeeded)
             {
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name,p.WriterMail)
-                };
-                var useridentity = new ClaimsIdentity(claims, "a");
-                ClaimsPrincipal principal = new ClaimsPrincipal(useridentity);
-                await HttpContext.SignInAsync(principal);
                 return RedirectToAction("Index", "Dashboard");
             }
-            else 
+            else
             {
+                ModelState.AddModelError("", "Hatalı Kullanıcı Adı/Şifre");
                 return View();
             }
         }
 
     }
 }
-//Context context = new Context();
-//var datavalue = context.Writers.FirstOrDefault(x => x.WriterMail == p.WriterMail && x.WriterPassword == p.WriterPassword);
-//if (datavalue != null)
-//{
-//    HttpContext.Session.SetString("username", p.WriterMail);
-//    return RedirectToAction("Index", "Writer");
-//}
-//else
-//{
-//    return View();
-//}

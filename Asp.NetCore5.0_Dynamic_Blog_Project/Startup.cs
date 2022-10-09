@@ -31,10 +31,17 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project
             services.AddDbContext<Context>();
             services.AddIdentity<AppUser, AppRole>(x=> {
 
-                x.Password.RequireUppercase = false;
-                x.Password.RequireNonAlphanumeric = false;
-            
-            
+                x.SignIn.RequireConfirmedAccount = false;
+                x.SignIn.RequireConfirmedEmail = false;
+                x.SignIn.RequireConfirmedPhoneNumber = false;
+                x.User.RequireUniqueEmail = false;
+                //x.Password.RequiredLength = 3; // => password e girilen karakterin minimum 3 olmas?n? sa?lad?k. Varsay?lan de?er 6 d?r.
+                //x.Password.RequiredUniqueChars = 0;
+                x.Password.RequireLowercase = false; // =>özelli?i; ?ifre içerisinde en az 1 adet küçük harf zorunlulu?u olmas? özelli?ini false yapt?k.
+                x.Password.RequireUppercase = false; // => özelli?i; ?ifre içerisinde en az 1 adet büyük harf zorunlulu?u olmas?n? false yapt?k.
+                x.Password.RequireNonAlphanumeric = false; // =>  özelli?i; ?ifre içerisinde en az 1 adet alfanümerik karakter zorunlulu?u olmas? özelli?i false.
+                x.Password.RequireDigit = false; //rakam
+
             })
                 
                 
