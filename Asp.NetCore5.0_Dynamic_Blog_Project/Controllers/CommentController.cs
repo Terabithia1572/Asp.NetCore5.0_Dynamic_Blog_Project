@@ -29,7 +29,7 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
         {
             p.CommentDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             p.CommentStatus = true;
-            p.BlogID = 2;
+            p.BlogID = 1;
             commentManager.CommentAdd(p);
             return PartialView();
         }
