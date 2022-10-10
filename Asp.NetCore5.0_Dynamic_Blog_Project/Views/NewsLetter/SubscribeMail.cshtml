@@ -2,7 +2,25 @@
 
     <p>Teknoloji , Yazılım & Diğer Bloglar </p>
     <form method="post">
-        <input type="email" placeholder="Email" required="" name="Mail">
-        <input type="submit" value="Abone Ol">
+        <input type="email" placeholder="Email" required="" name="Mail" id="txtMail">
+        <input type="submit" value="Abone Ol" id="btnAboneOl">
     </form>
 </div>
+
+<script type="text/javascript">
+    $("#btnAboneOl").click(function () {
+        let values = {
+            Mail: $("#txtMail").val()
+        };
+
+        $.ajax({
+            type: "post",
+            url: "/Newsletter/SubscribeMail/",
+            data: values,
+            success: function (func) {
+                let result = jQuery.parseJSON(func);
+            }
+        });
+    });
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>
