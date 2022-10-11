@@ -60,41 +60,45 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
             return PartialView();
         }
         [HttpGet]
-        public IActionResult WriterEditProfile()
+        public async Task<IActionResult> WriterEditProfile()
         {
-            Context c = new Context();
-            var userName = User.Identity.Name;
-            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            //var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(
-            //    y => y.WriterID).FirstOrDefault();
-            //var writervalues = writerManager.TGetByID(writerID);
-            //return View(writervalues);
-            //var values =await _userManager.FindByNameAsync(User.Identity.Name);
-            var id =c.Users.Where(x=>x.Email==userMail).Select(y=>y.Id).FirstOrDefault();
-            var values = userManager.TGetByID(id);
-            return View(values);
+            //Context c = new Context();
+            //var userName = User.Identity.Name;
+            //var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            ////var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(
+            ////    y => y.WriterID).FirstOrDefault();
+            ////var writervalues = writerManager.TGetByID(writerID);
+            ////return View(writervalues);
+            ////var values =await _userManager.FindByNameAsync(User.Identity.Name);
+            //var id =c.Users.Where(x=>x.Email==userMail).Select(y=>y.Id).FirstOrDefault();
+            //var values = userManager.TGetByID(id);
+
+
+
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            UserUpdateViewModel model = new UserUpdateViewModel();
+            model.mail = values.Email;
+            model.username = values.UserName;
+            model.namesurname = values.NameSurname;
+            model.imageurl = values.ImageUrl;
+            return View(model);
         }
 
 
         [HttpPost]
-        public IActionResult WriterEditProfile(Writer p)
+        public async Task<IActionResult> WriterEditProfile(UserUpdateViewModel model)
         {
-
-            WriterValidator wl = new WriterValidator();
-            ValidationResult results = wl.Validate(p);
-            if (results.IsValid)
-            {
-                writerManager.TUpdate(p);
-                return RedirectToAction("Index", "Dashboard");
-            }
-            else
-            {
-                foreach (var item in results.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
-            }
-            return View();
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            //model.mail = values.Email;
+            //model.username = values.UserName;
+            //model.namesurname = values.NameSurname;
+            //model.imageurl = values.ImageUrl;
+            values.NameSurname = model.namesurname;
+            values.UserName = model.username;
+            values.ImageUrl = model.imageurl;
+            values.Email = model.mail;
+            var result = await _userManager.UpdateAsync(values);
+            return RedirectToAction("Index", "Dashboard");
         }
         
         [HttpGet]
