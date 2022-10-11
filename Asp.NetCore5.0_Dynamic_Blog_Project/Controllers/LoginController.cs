@@ -44,5 +44,11 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
             }
         }
 
+        public async Task<IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Login");
+        }
+
     }
 }
