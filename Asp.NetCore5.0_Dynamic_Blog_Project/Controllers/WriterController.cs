@@ -6,6 +6,7 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,15 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
     {
 
         WriterManager writerManager = new WriterManager(new EfWriterRepository());
+        UserManager userManager = new UserManager(new EfUserRepository());
+
+        private readonly UserManager<AppUser> _userManager;
+
+        public WriterController(UserManager<AppUser> userManager)
+        {
+            _userManager = userManager;
+        }
+
         [Authorize]
         public IActionResult Index()
         {
@@ -55,10 +65,14 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
             Context c = new Context();
             var userName = User.Identity.Name;
             var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(
-                y => y.WriterID).FirstOrDefault();
-            var writervalues = writerManager.TGetByID(writerID);
-            return View(writervalues);
+            //var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(
+            //    y => y.WriterID).FirstOrDefault();
+            //var writervalues = writerManager.TGetByID(writerID);
+            //return View(writervalues);
+            //var values =await _userManager.FindByNameAsync(User.Identity.Name);
+            var id =c.Users.Where(x=>x.Email==userMail).Select(y=>y.Id).FirstOrDefault();
+            var values = userManager.TGetByID(id);
+            return View(values);
         }
 
 
