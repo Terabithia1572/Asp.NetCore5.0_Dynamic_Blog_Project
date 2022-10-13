@@ -36,10 +36,11 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
 
         public IActionResult BlogListByWriter()
         {
-            var usermail = User.Identity.Name;
-            var writerID=c.Writers.Where(x=>x.WriterMail==
-            usermail).Select(y=>y.WriterID).FirstOrDefault();
-            var values=blogManager.GetListWithCategoryByWriterBm (writerID);
+            var userName = User.Identity.Name;
+            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            //sisteme otantike olan kullanıcının bilgilerinin gelmesi
+            var writerId = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
+            var values=blogManager.GetListWithCategoryByWriterBm (writerId);
             return View(values);
         }
         [HttpGet]
@@ -59,16 +60,17 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
         {
             BlogValidator _blogValidator = new BlogValidator(); // Fluent Validation Result seçiyoruz
             ValidationResult result = _blogValidator.Validate(p); //sonuc adında bir parametre oluşturduk
-            var usermail = User.Identity.Name;
-            var writerID = c.Writers.Where(x => x.WriterMail ==
-            usermail).Select(y => y.WriterID).FirstOrDefault();
+            var userName = User.Identity.Name;
+            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            //sisteme otantike olan kullanıcının bilgilerinin gelmesi
+            var writerId = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
 
             // p den gelen değğerler doğruysa
             if (result.IsValid) //eger ki sonuçlar geçerli ise o zaman süslü parantez içindekileri yap
             {
                 p.BlogStatus = true;
                 p.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-                p.WriterID = writerID;
+                p.WriterID = writerId;
                 blogManager.TAdd(p);
                 return RedirectToAction("BlogListByWriter", "Blog");
             }
@@ -106,10 +108,11 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
 
         public IActionResult EditBlog(Blog p)
         {
-            var usermail = User.Identity.Name;
-            var writerID = c.Writers.Where(x => x.WriterMail ==
-            usermail).Select(y => y.WriterID).FirstOrDefault();
-            p.WriterID = writerID;
+            var userName = User.Identity.Name;
+            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            //sisteme otantike olan kullanıcının bilgilerinin gelmesi
+            var writerId = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
+            p.WriterID = writerId;
             p.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             p.BlogStatus = true;
             blogManager.TUpdate(p);
