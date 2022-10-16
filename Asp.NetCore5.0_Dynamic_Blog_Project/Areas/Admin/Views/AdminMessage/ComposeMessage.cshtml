@@ -1,13 +1,11 @@
-﻿@using EntityLayer.Concrete
-@model List<Message2>
+﻿
 @{
-    ViewData["Title"] = "InBox";
+    ViewData["Title"] = "ComposeMessage";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
 <!DOCTYPE html>
 <html>
-
 
 <body>
     <div class="wrapper wrapper-content">
@@ -40,53 +38,49 @@
             </div>
             <div class="col-lg-9 animated fadeInRight">
                 <div class="mail-box-header">
-
-                    <form method="get" action="index.html" class="float-right mail-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control form-control-sm" name="search" placeholder="Mail Ara">
-                            <div class="input-group-btn">
-                                <button type="submit" class="btn btn-sm btn-primary">
-                                    Ara
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                    <h2>
-                        Gelen Kutusu (0)
-                    </h2>
-                    <div class="mail-tools tooltip-demo m-t-md">
-                        <div class="btn-group float-right">
-                            <button class="btn btn-white btn-sm"><i class="fa fa-arrow-left"></i></button>
-                            <button class="btn btn-white btn-sm"><i class="fa fa-arrow-right"></i></button>
-
-                        </div>
-                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Refresh inbox"><i class="fa fa-refresh"></i> Yenile</button>
-                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Okundu Olarak İşaretle"><i class="fa fa-eye"></i> </button>
-                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Önemli Olarak İşaretle"><i class="fa fa-exclamation"></i> </button>
-                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Çöp Kutusuna Taşı"><i class="fa fa-trash-o"></i> </button>
-
+                    <div class="float-right tooltip-demo">
+                        <a href="mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Move to draft folder"><i class="fa fa-pencil"></i> Taslak</a>
+                        <a href="mailbox.html" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Discard email"><i class="fa fa-times"></i> İptal Et</a>
                     </div>
+                    <h2>
+                        Yeni Mail Oluştur
+                    </h2>
                 </div>
                 <div class="mail-box">
 
-                    <table class="table table-hover table-mail">
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
+
+                    <div class="mail-body">
+
+                        <form method="get">
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Alıcı:</label>
+
+                                <div class="col-sm-10"><input type="text" class="form-control" value="yazar@mail.com"></div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Konu:</label>
+
+                                <div class="col-sm-10"><input type="text" class="form-control" value=""></div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Mesajınız:</label>
+
+                                <textarea class="form-control" value="" rows="7" cols="10"></textarea>
+                            </div>
+                        </form>
+
+                    </div>
 
 
-                                <tr class="read">
-                                    <td class="check-mail">
-                                        <input type="checkbox" class="i-checks">
-                                    </td>
-                                    <td class="mail-ontact"><a href="mail_detail.html">@item.SenderUser.WriterName</a></td>
-                                    <td class="mail-subject"><a href="mail_detail.html">@item.Subject</a></td>
-                                    <td class=""><i class="fa fa-paperclip"></i></td>
-                                    <td class="text-right mail-date">@(((DateTime)item.MessageDate).ToString("dd.MM.yyyy hh:mm"))</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+                    <div class="mail-body text-right tooltip-demo">
+                        <a href="mailbox.html" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Gönder"><i class="fa fa-reply"></i> Gönder</a>
+                        <a href="mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Vazgeç"><i class="fa fa-times"></i> Vazgeç</a>
+                        <a href="mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Taslak Klasörüne Taşı"><i class="fa fa-pencil"></i> Taslak</a>
+                    </div>
+                    <div class="clearfix"></div>
+
+
+
                 </div>
             </div>
         </div>
@@ -95,13 +89,12 @@
 
 </html>
 
-
 <!-- Mainly scripts -->
 <script src="~/AdminTheme/js/jquery-3.1.1.min.js"></script>
 <script src="~/AdminTheme/js/popper.min.js"></script>
 <script src="~/AdminTheme/js/bootstrap.js"></script>
 <script src="~/AdminTheme/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="~/AdminTheme/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="~/AdminTheme/js/plugins/slimscroll/jquery.slimscroll.js"></script>
 
 <!-- Custom and plugin javascript -->
 <script src="~/AdminTheme/js/inspinia.js"></script>
@@ -114,11 +107,12 @@
 <script src="~/AdminTheme/js/plugins/summernote/summernote-bs4.js"></script>
 
 <script>
-        $(document).ready(function(){
 
-            $('.summernote').summernote();
+    $(document).ready(function () {
 
-        });
+        $('.summernote').summernote();
+
+    });
 
 </script>
 
