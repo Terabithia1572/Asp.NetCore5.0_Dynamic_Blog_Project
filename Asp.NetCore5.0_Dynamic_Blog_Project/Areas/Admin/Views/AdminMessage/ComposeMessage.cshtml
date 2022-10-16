@@ -1,4 +1,5 @@
-﻿
+﻿@model EntityLayer.Concrete.Message2
+
 @{
     ViewData["Title"] = "ComposeMessage";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
@@ -51,33 +52,36 @@
 
                     <div class="mail-body">
 
-                        <form method="get">
+                        <form method="post">
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Alıcı:</label>
 
-                                <div class="col-sm-10"><input type="text" class="form-control" value="yazar@mail.com"></div>
+                                <div class="col-sm-10"><input type="text" class="form-control"></div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Konu:</label>
 
-                                <div class="col-sm-10"><input type="text" class="form-control" value=""></div>
+                                <div class="col-sm-10"><input type="text" class="form-control" name="Subject"></div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Mesajınız:</label>
 
-                                <textarea class="form-control" value="" rows="7" cols="10"></textarea>
+                                <textarea class="form-control" name="MessageDetails" rows="7" cols="10"></textarea>
                             </div>
+
+
+
+
+
+
+                            <div class="mail-body text-right tooltip-demo">
+                                <button class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Gönder"><i class="fa fa-reply"></i> Gönder</button>
+                                <a href="mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Vazgeç"><i class="fa fa-times"></i> Vazgeç</a>
+                                <a href="mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Taslak Klasörüne Taşı"><i class="fa fa-pencil"></i> Taslak</a>
+                            </div>
+                            <div class="clearfix"></div>
                         </form>
-
                     </div>
-
-
-                    <div class="mail-body text-right tooltip-demo">
-                        <a href="mailbox.html" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Gönder"><i class="fa fa-reply"></i> Gönder</a>
-                        <a href="mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Vazgeç"><i class="fa fa-times"></i> Vazgeç</a>
-                        <a href="mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Taslak Klasörüne Taşı"><i class="fa fa-pencil"></i> Taslak</a>
-                    </div>
-                    <div class="clearfix"></div>
 
 
 
@@ -89,30 +93,4 @@
 
 </html>
 
-<!-- Mainly scripts -->
-<script src="~/AdminTheme/js/jquery-3.1.1.min.js"></script>
-<script src="~/AdminTheme/js/popper.min.js"></script>
-<script src="~/AdminTheme/js/bootstrap.js"></script>
-<script src="~/AdminTheme/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="~/AdminTheme/js/plugins/slimscroll/jquery.slimscroll.js"></script>
-
-<!-- Custom and plugin javascript -->
-<script src="~/AdminTheme/js/inspinia.js"></script>
-<script src="~/AdminTheme/js/plugins/pace/pace.min.js"></script>
-
-<!-- iCheck -->
-<script src="~/AdminTheme/js/plugins/iCheck/icheck.min.js"></script>
-
-<!-- SUMMERNOTE -->
-<script src="~/AdminTheme/js/plugins/summernote/summernote-bs4.js"></script>
-
-<script>
-
-    $(document).ready(function () {
-
-        $('.summernote').summernote();
-
-    });
-
-</script>
 
