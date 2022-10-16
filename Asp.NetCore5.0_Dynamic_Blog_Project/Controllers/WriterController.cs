@@ -52,6 +52,11 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
         [AllowAnonymous]
         public PartialViewResult WriterNavbarPartial()
         {
+            //Context c = new Context();
+            //var userName = User.Identity.Name;
+            //var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            //ViewBag.userMail1 = userMail;
+            //sisteme otantike olan kullanıcının bilgilerinin gelmesi
             return PartialView();
         }
         

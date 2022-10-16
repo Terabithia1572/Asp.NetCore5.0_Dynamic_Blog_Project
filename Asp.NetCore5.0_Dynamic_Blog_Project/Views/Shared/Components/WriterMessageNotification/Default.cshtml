@@ -21,31 +21,3 @@
     <div class="dropdown-divider"></div>
     <h6 class="p-3 mb-0 text-center">4 Yeni Mesaj</h6>
 </div>
-
-@*@functions{
-    public string XZamanOnce(DateTime tarih)
-    {
-        string mesaj = "";
-        DateTime simdikiTarih = DateTime.Now;
-
-        var tarihFarki = simdikiTarih - tarih;
-        var toplamSaniye = tarihFarki.Seconds + (tarihFarki.Minutes * 60) + (tarihFarki.Hours * 60 * 60) + (tarihFarki.Days * 24 * 60);
-        var toplamDakika = tarihFarki.Minutes + (tarihFarki.Hours * 60) + (tarihFarki.Days * 24 * 60);
-        var toplamSaat = tarihFarki.Hours + (tarihFarki.Days * 24);
-        var toplamGun = tarihFarki.Days;
-
-        if (toplamSaniye <= 59)
-            mesaj = toplamSaniye + " saniye önce";
-        else if (toplamDakika <= 59)
-            mesaj = toplamDakika + " dakika önce";
-        else if (toplamSaat <= 23)
-            mesaj = toplamSaat + " saat önce";
-        else if (toplamGun <= 29)
-            mesaj = toplamGun + " gün önce";
-        else if (toplamGun < 365)
-            mesaj = (toplamGun / 30) + " ay önce";
-        else if (toplamGun >= 365)
-            mesaj = (toplamGun / 365) + " yıl önce";
-
-        return mesaj;
-    }*@
