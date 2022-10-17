@@ -50,5 +50,10 @@ namespace Asp.NetCore5._0_Dynamic_Blog_Project.Controllers
             return RedirectToAction("Index", "Login");
         }
 
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
     }
 }
