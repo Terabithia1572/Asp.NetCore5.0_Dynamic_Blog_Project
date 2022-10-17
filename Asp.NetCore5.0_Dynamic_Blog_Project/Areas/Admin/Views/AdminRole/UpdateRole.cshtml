@@ -1,0 +1,23 @@
+﻿@using Asp.NetCore5._0_Dynamic_Blog_Project.Models
+@model RoleUpdateViewModel
+@{
+    ViewData["Title"] = "UpdateRole";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Rolü Güncelle</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label>Role ID</label>
+        <input type="text" name="Id" value="@Model.Id" class="form-control" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label>Role Başlığı</label>
+        <input type="text" name="Name" value="@Model.name" class="form-control" />
+    </div>
+    <br />
+    <button class="btn btn-outline-danger">Rolü Güncelle</button>
+</form>
+
